@@ -13,13 +13,13 @@ class ApplicationController < ActionController::API
   end
 
   def check_login
-    user = User.find_by(email: @payload['email'])
-    return if user
+    @current_user = User.find_by(email: @payload['email'])
+    return if @current_user
 
-    render json: { error: '認証がされていません。' }, status: :unauthorized
+    render json: { error: { message: '認証がされていません。' } }, status: :unauthorized
   end
 
   def handle_google_auth_error
-    render json: { error: '不正なトークンです。' }, status: :unauthorized
+    render json: { error: { message: '不正なトークンです。' } }, status: :unauthorized
   end
 end
