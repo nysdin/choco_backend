@@ -29,7 +29,8 @@ jobs:
 
     container:
       image: ghcr.io/nysdin/choco_backend:develop
-      env: RAILS_ENV=test
+      env:
+        RAILS_ENV: test
 
     steps:
       - name: checkout
