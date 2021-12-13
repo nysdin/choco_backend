@@ -16,6 +16,7 @@ gem 'pundit'
 gem 'activerecord-import'
 gem 'rails_same_site_cookie'
 gem 'rack-cors'
+gem 'googleauth'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
