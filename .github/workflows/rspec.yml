@@ -17,6 +17,7 @@ jobs:
         env:
           DB_USERNAME: root
           DB_PASSWORD: develop
+          MYSQL_ROOT_PASSWORD: develop
         options: >-
           --health-cmd "mysqladmin ping"
           --health-interval 10s
