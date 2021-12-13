@@ -23,6 +23,10 @@ AllCops:
 Rails:
   Enabled: true
 
+# Method parameter must be at least 3 characters long.
+Naming/MethodParameterName:
+  Enabled: false
+
 # seed-fuの構文とあわない
 Layout/ParameterAlignment:
   Enabled: false
@@ -91,6 +95,9 @@ Layout/MultilineOperationIndentation:
 Lint/UnusedBlockArgument:
   Enabled: false
 
+Lint/AmbiguousBlockAssociation:
+  Enabled: false
+
 Metrics/AbcSize:
   Max: 110
 
@@ -113,9 +120,6 @@ Style/Documentation:
   Enabled: false
 
 Style/AsciiComments:
-  Enabled: false
-
-Lint/AmbiguousBlockAssociation:
   Enabled: false
 
 Metrics/BlockLength:
