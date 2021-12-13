@@ -1,4 +1,6 @@
 class GraphqlController < ApplicationController
+  skip_before_action :check_login
+  skip_before_action :create_request_payload
   # If accessing from outside this domain, nullify the session
   # This allows for outside API access while preventing CSRF attacks,
   # but you'll have to authenticate your user separately
