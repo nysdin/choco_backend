@@ -7,6 +7,6 @@ class UsersController < ApplicationController
       name: @payload['name']
     )
 
-    render json: user, status: :ok
+    render json: @current_user, status: :ok
   end
 end
