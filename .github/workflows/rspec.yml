@@ -17,8 +17,8 @@ jobs:
         ports:
           - 5432:5432
         env:
-          POSTGRES_USER: root
-          POSTGRES_PASSWORD: develop
+          DB_USERNAME: root
+          DB_PASSWORD: develop
         options: >-
           --health-cmd "mysqladmin ping"
           --health-interval 10s
