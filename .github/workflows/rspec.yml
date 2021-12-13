@@ -47,3 +47,5 @@ jobs:
         env:
           RAILS_ENV: test
           DB_HOST: db
+          DB_USERNAME: root
+          DB_PASSWORD: develop
