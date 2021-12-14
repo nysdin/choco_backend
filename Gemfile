@@ -16,6 +16,8 @@ gem 'pundit'
 gem 'activerecord-import'
 gem 'rails_same_site_cookie'
 gem 'rack-cors'
+gem 'graphql'
+gem 'sass-rails'
 gem 'googleauth'
 
 # Use Active Storage variant
@@ -42,6 +44,7 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'rails-erd'
+  gem 'graphiql-rails'
 end
 
 group :test do
