@@ -8,10 +8,7 @@ class GraphqlController < ApplicationController
     query = params[:query]
     operation_name = params[:operationName]
     auth_token = request.headers[:authorization]
-    context = {
-      current_user: @current_user,
-      auth_token: auth_token
-    }
+    context = { current_user: @current_user }
 
     result = ChocoSchema.execute(query, variables: variables, context: context, operation_name: operation_name)
     render json: result
