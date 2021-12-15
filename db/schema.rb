@@ -33,6 +33,6 @@ ActiveRecord::Schema.define(version: 2021_12_15_143237) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
-  add_foreign_key "merchandises", "users", column: "buyer_id"
-  add_foreign_key "merchandises", "users", column: "seller_id"
+  add_foreign_key "merchandises", "users", column: "buyer_id", on_delete: :nullify
+  add_foreign_key "merchandises", "users", column: "seller_id", on_delete: :nullify
 end

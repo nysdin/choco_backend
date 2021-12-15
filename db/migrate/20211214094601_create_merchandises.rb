@@ -12,7 +12,7 @@ class CreateMerchandises < ActiveRecord::Migration[6.1]
       t.timestamps
     end
 
-    add_foreign_key :merchandises, :users, column: :seller_id
-    add_foreign_key :merchandises, :users, column: :buyer_id
+    add_foreign_key :merchandises, :users, column: :seller_id, on_delete: :nullify
+    add_foreign_key :merchandises, :users, column: :buyer_id, on_delete: :nullify
   end
 end
