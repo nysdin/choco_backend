@@ -4,8 +4,9 @@ class ApplicationController < ActionController::API
 
   rescue_from Google::Auth::IDTokens::SignatureError, with: :handle_google_auth_error
 
+  ## MEMO: Rest用の認証チェック
   def create_request_payload
-    token = request.query_parameters[:token]
+    token = request.headers[:authorization]
     @payload = Google::Auth::IDTokens.verify_oidc(
       token,
       aud: ENV['GOOGLE_AUTH_CLIENT_ID']
@@ -13,7 +14,7 @@ class ApplicationController < ActionController::API
   end
 
   def check_login
-    @current_user = User.find_by(email: @payload['email'])
+    @current_user ||= User.find_by(email: @payload['email'])
     return if @current_user
 
     render json: { error: { message: '認証がされていません。' } }, status: :unauthorized
