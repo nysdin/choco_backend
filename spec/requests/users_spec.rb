@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'Users', type: :request do
   describe 'POST /users' do
     context '不正なJWTトークンが渡された場合' do
-      before { post '/users?token=cjknsdjvhdsvjefhoviehve' }
+      before { post '/users', headers: { authorization: 'cjknsdjvhdsvjefhoviehve' } }
 
       it '不正なトークンとして認識される' do
         json = JSON.parse(response.body)

@@ -21,6 +21,6 @@ class ApplicationController < ActionController::API
   end
 
   def handle_google_auth_error
-    render json: { error: { message: '不正なトークンです。' } }
+    render json: { error: { message: '不正なトークンです。' } }, status: :unauthorized
   end
 end
