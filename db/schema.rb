@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_14_094601) do
+ActiveRecord::Schema.define(version: 2021_12_15_143237) do
 
   create_table "merchandises", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "title", null: false
@@ -18,9 +18,6 @@ ActiveRecord::Schema.define(version: 2021_12_14_094601) do
     t.integer "price", null: false
     t.bigint "seller_id"
     t.bigint "buyer_id"
-    t.integer "status"
-    t.datetime "traded_at"
-    t.datetime "closed_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["buyer_id"], name: "fk_rails_01d2795006"
