@@ -1,9 +1,7 @@
 module Resolvers
   class LoginRequiredResolver < GraphQL::Schema::Resolver
-    def authorized?(args = '')
-      if Rails.env.development? && !context[:isApollo]
-        context[:current_user] = user_for_graphiql
-      end
+    def authorized?(_args = '')
+      context[:current_user] = user_for_graphiql if Rails.env.development? && !context[:isApollo]
 
       raise GraphQL::ExecutionError, 'ログインが見当たりません。' unless context[:current_user]
 
@@ -12,13 +10,13 @@ module Resolvers
 
     private
 
-    def user_for_graphiql
-      # graphiql内だけで使用する仮のログインユーザー
-      {
-        id: 0,
-        name: 'graphiql user',
-        email: 'graphiql@exmaple.com',
-      }
-    end
+      def user_for_graphiql
+        # graphiql内だけで使用する仮のログインユーザー
+        {
+          id: 0,
+          name: 'graphiql user',
+          email: 'graphiql@exmaple.com'
+        }
+      end
   end
 end
