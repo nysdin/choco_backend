@@ -1,6 +1,6 @@
 module Types
   class MerchandiseType < Types::BaseObject
-    field :id, ID, null:false
+    field :id, ID, null: false
     field :title, String, null: false
     field :description, String
     field :price, Integer, null: false
