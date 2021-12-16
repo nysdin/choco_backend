@@ -19,5 +19,7 @@ module Types
     def merchandises
       Merchandise.all
     end
+
+    field :myself, resolver: Resolvers::MyselfResolver
   end
 end

@@ -19,6 +19,7 @@ gem 'rack-cors'
 gem 'graphql'
 gem 'sass-rails'
 gem 'googleauth'
+gem 'graphql-batch'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

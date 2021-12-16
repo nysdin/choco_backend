@@ -7,7 +7,10 @@ class GraphqlController < ApplicationController
     variables = prepare_variables(params[:variables])
     query = params[:query]
     operation_name = params[:operationName]
-    context = { current_user: @current_user }
+    context = {
+      current_user: @current_user,
+      isApollo: request.query_parameters[:apollo] == 'true'
+    }
 
     result = ChocoSchema.execute(query, variables: variables, context: context, operation_name: operation_name)
     render json: result
@@ -29,7 +32,7 @@ class GraphqlController < ApplicationController
         )
         @current_user ||= User.find_by(email: @payload['email'])
       rescue => e
-        logger.debug e
+        logger.debug "エラーの内容: #{e}"
         @current_user = nil
       end
     end
