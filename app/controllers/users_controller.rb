@@ -5,7 +5,7 @@ class UsersController < ApplicationController
     @currnt_user = User.create_or_find_by(
       email: @payload['email'],
       name: @payload['name'],
-      image: @payload['picture'],
+      image: @payload['picture']
     )
 
     render json: @current_user, status: :ok

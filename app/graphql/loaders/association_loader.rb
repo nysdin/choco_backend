@@ -6,6 +6,7 @@ module Loaders
     end
 
     def initialize(model, association_name)
+      super(model, association_name)
       @model = model
       @association_name = association_name
       ## -> 下記のvalidateは、private method
@@ -26,25 +27,25 @@ module Loaders
 
     def perform(record)
       preload_association(record)
-      record.each { |record| fulfill(record, read_association(record)) }
+      record.each { |rec| fulfill(rec, read_association(rec)) }
     end
 
     private
 
-    def preload_association(records)
-      ::ActiveRecord::Associations::Preloader.new.preload(records, @association_name)
-    end
+      def preload_association(records)
+        ::ActiveRecord::Associations::Preloader.new.preload(records, @association_name)
+      end
 
-    def validate
-      raise ArgumentError, "No association #{@association_name} on #{@model}" unless @model.reflect_on_association(@association_name)
-    end
+      def validate
+        raise ArgumentError, "No association #{@association_name} on #{@model}" unless @model.reflect_on_association(@association_name)
+      end
 
-    def read_association(record)
-      record.public_send(@association_name)
-    end
+      def read_association(record)
+        record.public_send(@association_name)
+      end
 
-    def association_loaded?(record)
-      record.association(@association_name).loaded?
-    end
+      def association_loaded?(record)
+        record.association(@association_name).loaded?
+      end
   end
 end

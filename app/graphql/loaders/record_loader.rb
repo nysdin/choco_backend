@@ -19,10 +19,10 @@ module Loaders
 
     private
 
-    def query(keys)
-      scope = @model
-      scope = scope.where(@where) if @where
-      scope.where(@column => keys)
-    end
+      def query(keys)
+        scope = @model
+        scope = scope.where(@where) if @where
+        scope.where(@column => keys)
+      end
   end
 end
