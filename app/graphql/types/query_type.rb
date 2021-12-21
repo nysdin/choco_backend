@@ -14,12 +14,7 @@ module Types
       Merchandise.find(id)
     end
 
-    field :merchandises, Types::MerchandiseType.connection_type, null: false
-
-    def merchandises
-      Merchandise.all
-    end
-
+    field :merchandises, resolver: Resolvers::MerchandisesResolver
     field :myself, resolver: Resolvers::MyselfResolver
   end
 end

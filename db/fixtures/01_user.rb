@@ -1,4 +1,4 @@
-10.times do |n|
+36.times do |n|
   User.seed do |s|
     s.id = n + 1
     s.name = Faker::Name.name
