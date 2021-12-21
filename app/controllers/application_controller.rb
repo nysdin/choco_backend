@@ -6,7 +6,7 @@ class ApplicationController < ActionController::API
 
   ## MEMO: Rest用の認証チェック
   def create_request_payload
-    token = request.headers[:authorization]
+    token = request.headers[:Authorization]
     @payload = Google::Auth::IDTokens.verify_oidc(
       token,
       aud: ENV['GOOGLE_AUTH_CLIENT_ID']
