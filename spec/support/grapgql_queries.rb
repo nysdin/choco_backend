@@ -49,4 +49,20 @@ module GraphqlQueries
       }
     GRAPHQL
   end
+
+  def myself_query
+    <<~GRAPHQL
+      query {
+        myself {
+          id,
+          name,
+          image,
+          evaluation,
+          listedMerchandises {
+            id
+          }
+        }
+      }
+    GRAPHQL
+  end
 end

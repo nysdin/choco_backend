@@ -7,5 +7,6 @@ module Types
     field :merchandises, resolver: Resolvers::MerchandisesResolver
     field :myself, resolver: Resolvers::MyselfResolver
     field :merchandise_detail, resolver: Resolvers::MerchandiseDetailResolver
+    field :favorite, resolver: Resolvers::CurrentUserFavoriteResolver
   end
 end
