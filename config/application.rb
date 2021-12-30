@@ -14,6 +14,7 @@ require "action_view/railtie"
 require "action_cable/engine"
 require "sprockets/railtie"
 # require "rails/test_unit/railtie"
+require_relative "../lib/middleware/healthcheck"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -41,5 +42,7 @@ module Choco
       g.test_framework :rspec, request_specs: true
       g.fixture_replacement :factory_bot, dir: "spec/factories"
     end
+
+    config.middleware.insert_after Rails::Rack::Logger, ::Healthcheck
   end
 end
