@@ -6,7 +6,7 @@ class Healthcheck
   end
 
   def call(env)
-    if env['PAHT_INFO'] = '/healthcheck'
+    if env['PAHT_INFO'] == '/healthcheck'
       OK_RESPONSE
     else
       @app.call(env)
