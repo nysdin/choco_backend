@@ -1,5 +1,5 @@
 class Healthcheck
-  OK_RESPONSE = [200, { 'Content-Type' => 'text/plain' }, ['healthy']]
+  OK_RESPONSE = [200, { 'Content-Type' => 'text/plain' }, ['healthy']].freeze
 
   def initialize(app)
     @app = app
