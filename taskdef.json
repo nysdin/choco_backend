@@ -42,6 +42,10 @@
       "workingDirectory": null,
       "secrets": [
         {
+          "valueFrom": "arn:aws:secretsmanager:ap-northeast-1:292228707312:secret:choco/app/master_key-69yNL2:master_key::",
+          "name": "RAILS_MASTER_KEY"
+        },
+        {
           "valueFrom": "arn:aws:secretsmanager:ap-northeast-1:292228707312:secret:choco/mysql-1vw4vY:username::",
           "name": "DB_USERNAME"
         },
@@ -122,6 +126,10 @@
       "workingDirectory": null,
       "secrets": [
         {
+          "valueFrom": "arn:aws:secretsmanager:ap-northeast-1:292228707312:secret:choco/app/master_key-69yNL2:master_key::",
+          "name": "RAILS_MASTER_KEY"
+        },
+        {
           "valueFrom": "arn:aws:secretsmanager:ap-northeast-1:292228707312:secret:choco/mysql-1vw4vY:username::",
           "name": "DB_USERNAME"
         },
@@ -167,7 +175,7 @@
   "memory": "1024",
   "taskRoleArn": null,
   "compatibilities": ["EC2", "FARGATE"],
-  "taskDefinitionArn": "arn:aws:ecs:ap-northeast-1:292228707312:task-definition/choco-backend-application-def:21",
+  "taskDefinitionArn": "arn:aws:ecs:ap-northeast-1:292228707312:task-definition/choco-backend-application-def:27",
   "family": "choco-backend-application-def",
   "requiresAttributes": [
     {
@@ -236,7 +244,7 @@
   "networkMode": "awsvpc",
   "runtimePlatform": null,
   "cpu": "512",
-  "revision": 21,
+  "revision": 27,
   "status": "ACTIVE",
   "inferenceAccelerators": null,
   "proxyConfiguration": null,
