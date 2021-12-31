@@ -1,8 +1,8 @@
 module GraphqlQueries
-  def listed_merchandises_query(endCursor = nil)
+  def listed_merchandises_query(end_cursor = nil)
     <<~GRAPHQL
       query {
-        merchandises(first: 10, after: "#{endCursor}") {
+        merchandises(first: 10, after: "#{end_cursor}") {
           pageInfo {
             endCursor,
             hasNextPage,
@@ -60,6 +60,37 @@ module GraphqlQueries
           evaluation,
           listedMerchandises {
             id
+          }
+        }
+      }
+    GRAPHQL
+  end
+
+  def favorite_query(merchandise_id = 0)
+    <<~GRAPHQL
+      query {
+        favorite(merchandiseId: #{merchandise_id}) {
+          id,
+        }
+      }
+    GRAPHQL
+  end
+
+  def favorite_mutation(merchandise_id: 0, is_favorite: false)
+    <<~GRAPHQL
+      mutation {
+        favorite(input: {
+          merchandiseId: #{merchandise_id},
+          isFavorited: #{is_favorite},
+        }) {
+          favorite {
+            id,
+            user {
+              id
+            },
+            merchandise {
+              id
+            }
           }
         }
       }

@@ -16,32 +16,31 @@ module Mutations
 
       if able_to_favorite_condition
         begin
-          puts '--- 新規のいいねを作成 ---'
+          Rails.logger.info '--- 新規のいいねを作成 ---'
           favorite = Favorite.create!(
             merchandise_id: merchandise_id,
-            user_id: user_id,
+            user_id: user_id
           )
         rescue => e
-          puts "error type: #{e.class}"
-          puts "created error content: #{e}"
+          Rails.logger.debug { "error type: #{e.class}" }
+          Rails.logger.debug { "created error content: #{e}" }
         end
       elsif disable_to_favorite_condition
         begin
-          puts '--- いいねの取り消しを実行 ---'
+          Rails.logger.info '--- いいねの取り消しを実行 ---'
           favorite.destroy!
         rescue => e
-          puts "error type: #{e.class}"
-          puts "created error content: #{e}"
+          Rails.logger.debug { "error type: #{e.class}" }
+          Rails.logger.debug { "created error content: #{e}" }
         end
       else
-        puts '-- 何も起きていない --'
-        p "is favorite => #{is_favorited}"
-        p "favorite record => #{favorite}"
+        Rails.logger.info '-- 何も起きていない --'
+        Rails.logger.debug { "is favorite => #{is_favorited}" }
+        Rails.logger.debug { "favorite record => #{favorite}" }
       end
-      # binding.pry
 
-      puts '--- 最終的な結果 ---'
-      pp favorite
+      Rails.logger.info '--- 最終的な結果 ---'
+      Rails.logger.info favorite
 
       { favorite: favorite }
     end

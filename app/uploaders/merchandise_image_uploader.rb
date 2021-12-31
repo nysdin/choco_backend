@@ -11,13 +11,13 @@ class MerchandiseImageUploader < CarrierWave::Uploader::Base
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
-  #保存するファイルの種類を設定
+  # 保存するファイルの種類を設定
   def extension_whitelist
     %w(png jpg jpeg pdf gif)
   end
 
-  #ファイル名を指定今回はアップロード日時-ファイル名に設定
+  # ファイル名を指定今回はアップロード日時-ファイル名に設定
   def filename
-    "#{Date.today}-#{original_filename}" if original_filename
+    "#{Time.zone.today}-#{original_filename}" if original_filename
   end
 end

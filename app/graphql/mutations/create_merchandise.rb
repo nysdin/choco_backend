@@ -24,7 +24,7 @@ module Mutations
           price: price,
           public_status: public_status,
           condition: condition,
-          seller_id: context[:current_user].id,
+          seller_id: context[:current_user].id
         )
 
         image.each do |i|
@@ -39,11 +39,13 @@ module Mutations
           department_id: department_id
         )
       rescue => e
-        puts "error type: #{e.class}"
-        puts "created error content: #{e}"
+        logger.debug "error type: #{e.class}"
+        logger.debug "created error content: #{e}"
       end
 
-      pp merchandise
+      Rails.logger.info '--- 最終的な商品のレコード ---'
+      Rails.logger.info merchandise
+
       { merchandise: merchandise }
     end
   end
