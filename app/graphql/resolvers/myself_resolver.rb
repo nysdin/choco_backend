@@ -1,6 +1,7 @@
 module Resolvers
   class MyselfResolver < LoginRequiredResolver
     type Types::UserType, null: true
+    # argument :email, String, required: true
 
     def resolve
       ## -> graphql-batchを使わない書き方

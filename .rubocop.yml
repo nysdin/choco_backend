@@ -23,6 +23,11 @@ AllCops:
 Rails:
   Enabled: true
 
+## Maxの引数の個数を指定
+ParameterLists:
+  Max: 7
+  CountKeywordArgs: true
+
 # Method parameter must be at least 3 characters long.
 Naming/MethodParameterName:
   Enabled: false

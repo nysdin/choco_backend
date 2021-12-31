@@ -34,6 +34,11 @@ RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
+  ## テスト環境で使用したいデータはここでインサートする
+  config.before :suite do
+    SeedFu.seed(config.fixture_path)
+  end
+
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
   # instead of true.

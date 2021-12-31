@@ -20,6 +20,10 @@ gem 'graphql'
 gem 'sass-rails'
 gem 'googleauth'
 gem 'graphql-batch'
+gem 'carrierwave'
+gem 'carrierwave-base64'
+gem 'fog-aws'
+gem 'fog'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
