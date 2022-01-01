@@ -1,0 +1,260 @@
+{
+  "ipcMode": null,
+  "executionRoleArn": "arn:aws:iam::292228707312:role/choco-ECSTaskExecutionRolePolicy",
+  "containerDefinitions": [
+    {
+      "dnsSearchDomains": [],
+      "environmentFiles": [],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "secretOptions": [],
+        "options": {
+          "awslogs-group": "/ecs/logs/choco-backend-application",
+          "awslogs-region": "ap-northeast-1",
+          "awslogs-stream-prefix": "ecs"
+        }
+      },
+      "entryPoint": [],
+      "portMappings": [
+        {
+          "hostPort": 80,
+          "protocol": "tcp",
+          "containerPort": 80
+        }
+      ],
+      "command": ["bundle", "exec", "rails", "server", "--port=80"],
+      "linuxParameters": null,
+      "cpu": 256,
+      "environment": [
+        {
+          "name": "PORT",
+          "value": "80"
+        },
+        {
+          "name": "RAILS_ENV",
+          "value": "production"
+        },
+        {
+          "name": "RAILS_LOG_TO_STDOUT",
+          "value": "true"
+        }
+      ],
+      "resourceRequirements": null,
+      "ulimits": [],
+      "dnsServers": [],
+      "mountPoints": [],
+      "workingDirectory": null,
+      "secrets": [
+        {
+          "valueFrom": "arn:aws:secretsmanager:ap-northeast-1:292228707312:secret:choco/app/master_key-69yNL2:master_key::",
+          "name": "RAILS_MASTER_KEY"
+        },
+        {
+          "valueFrom": "arn:aws:secretsmanager:ap-northeast-1:292228707312:secret:choco/mysql-1vw4vY:username::",
+          "name": "DB_USERNAME"
+        },
+        {
+          "valueFrom": "arn:aws:secretsmanager:ap-northeast-1:292228707312:secret:choco/mysql-1vw4vY:password::",
+          "name": "DB_PASSWORD"
+        },
+        {
+          "valueFrom": "arn:aws:secretsmanager:ap-northeast-1:292228707312:secret:choco/mysql-1vw4vY:host::",
+          "name": "DB_HOST"
+        },
+        {
+          "valueFrom": "arn:aws:secretsmanager:ap-northeast-1:292228707312:secret:choco/mysql-1vw4vY:port::",
+          "name": "DB_PORT"
+        }
+      ],
+      "dockerSecurityOptions": [],
+      "memory": null,
+      "memoryReservation": 128,
+      "volumesFrom": [],
+      "stopTimeout": null,
+      "image": "<IMAGE1_NAME>",
+      "startTimeout": null,
+      "firelensConfiguration": null,
+      "dependsOn": null,
+      "disableNetworking": null,
+      "interactive": null,
+      "healthCheck": null,
+      "essential": true,
+      "links": [],
+      "hostname": null,
+      "extraHosts": [],
+      "pseudoTerminal": null,
+      "user": null,
+      "readonlyRootFilesystem": null,
+      "dockerLabels": {},
+      "systemControls": [],
+      "privileged": null,
+      "name": "choco-backend-application"
+    },
+    {
+      "dnsSearchDomains": [],
+      "environmentFiles": [],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "secretOptions": [],
+        "options": {
+          "awslogs-group": "/ecs/logs/choco-backend-application",
+          "awslogs-region": "ap-northeast-1",
+          "awslogs-stream-prefix": "ecs"
+        }
+      },
+      "entryPoint": [],
+      "portMappings": [
+        {
+          "hostPort": 81,
+          "protocol": "tcp",
+          "containerPort": 81
+        }
+      ],
+      "command": ["rails", "db:migrate"],
+      "linuxParameters": null,
+      "cpu": 256,
+      "environment": [
+        {
+          "name": "PORT",
+          "value": "80"
+        },
+        {
+          "name": "RAILS_ENV",
+          "value": "production"
+        },
+        {
+          "name": "RAILS_LOG_TO_STDOUT",
+          "value": "true"
+        }
+      ],
+      "resourceRequirements": null,
+      "ulimits": [],
+      "dnsServers": [],
+      "mountPoints": [],
+      "workingDirectory": null,
+      "secrets": [
+        {
+          "valueFrom": "arn:aws:secretsmanager:ap-northeast-1:292228707312:secret:choco/app/master_key-69yNL2:master_key::",
+          "name": "RAILS_MASTER_KEY"
+        },
+        {
+          "valueFrom": "arn:aws:secretsmanager:ap-northeast-1:292228707312:secret:choco/mysql-1vw4vY:username::",
+          "name": "DB_USERNAME"
+        },
+        {
+          "valueFrom": "arn:aws:secretsmanager:ap-northeast-1:292228707312:secret:choco/mysql-1vw4vY:password::",
+          "name": "DB_PASSWORD"
+        },
+        {
+          "valueFrom": "arn:aws:secretsmanager:ap-northeast-1:292228707312:secret:choco/mysql-1vw4vY:host::",
+          "name": "DB_HOST"
+        },
+        {
+          "valueFrom": "arn:aws:secretsmanager:ap-northeast-1:292228707312:secret:choco/mysql-1vw4vY:port::",
+          "name": "DB_PORT"
+        }
+      ],
+      "dockerSecurityOptions": [],
+      "memory": null,
+      "memoryReservation": 128,
+      "volumesFrom": [],
+      "stopTimeout": null,
+      "image": "<IMAGE1_NAME>",
+      "startTimeout": null,
+      "firelensConfiguration": null,
+      "dependsOn": null,
+      "disableNetworking": null,
+      "interactive": null,
+      "healthCheck": null,
+      "essential": false,
+      "links": [],
+      "hostname": null,
+      "extraHosts": [],
+      "pseudoTerminal": null,
+      "user": null,
+      "readonlyRootFilesystem": null,
+      "dockerLabels": {},
+      "systemControls": [],
+      "privileged": null,
+      "name": "choco-db-migrate"
+    }
+  ],
+  "placementConstraints": [],
+  "memory": "1024",
+  "taskRoleArn": null,
+  "compatibilities": ["EC2", "FARGATE"],
+  "taskDefinitionArn": "arn:aws:ecs:ap-northeast-1:292228707312:task-definition/choco-backend-application-def:34",
+  "family": "choco-backend-application-def",
+  "requiresAttributes": [
+    {
+      "targetId": null,
+      "targetType": null,
+      "value": null,
+      "name": "com.amazonaws.ecs.capability.logging-driver.awslogs"
+    },
+    {
+      "targetId": null,
+      "targetType": null,
+      "value": null,
+      "name": "ecs.capability.execution-role-awslogs"
+    },
+    {
+      "targetId": null,
+      "targetType": null,
+      "value": null,
+      "name": "com.amazonaws.ecs.capability.ecr-auth"
+    },
+    {
+      "targetId": null,
+      "targetType": null,
+      "value": null,
+      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
+    },
+    {
+      "targetId": null,
+      "targetType": null,
+      "value": null,
+      "name": "ecs.capability.secrets.asm.environment-variables"
+    },
+    {
+      "targetId": null,
+      "targetType": null,
+      "value": null,
+      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.17"
+    },
+    {
+      "targetId": null,
+      "targetType": null,
+      "value": null,
+      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.21"
+    },
+    {
+      "targetId": null,
+      "targetType": null,
+      "value": null,
+      "name": "ecs.capability.execution-role-ecr-pull"
+    },
+    {
+      "targetId": null,
+      "targetType": null,
+      "value": null,
+      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
+    },
+    {
+      "targetId": null,
+      "targetType": null,
+      "value": null,
+      "name": "ecs.capability.task-eni"
+    }
+  ],
+  "pidMode": null,
+  "requiresCompatibilities": ["FARGATE"],
+  "networkMode": "awsvpc",
+  "runtimePlatform": null,
+  "cpu": "512",
+  "revision": 34,
+  "status": "ACTIVE",
+  "inferenceAccelerators": null,
+  "proxyConfiguration": null,
+  "volumes": []
+}
