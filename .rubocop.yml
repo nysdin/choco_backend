@@ -1,0 +1,184 @@
+inherit_from: .rubocop_todo.yml
+
+require:
+  - rubocop-performance
+  - rubocop-rails
+  - rubocop-rspec
+
+AllCops:
+  NewCops: enable
+  TargetRubyVersion: 3.0
+  DisplayCopNames: true
+  Exclude:
+    - bin/*
+    - config/**/*
+    - db/**/*
+    - Gemfile
+    - Gemfile.lock
+    - vendor/bundle/**/*
+    - spec/rails_helper.rb
+    - spec/spec_helper.rb
+    - tmp/**/*
+
+Rails:
+  Enabled: true
+
+## Maxの引数の個数を指定
+ParameterLists:
+  Max: 7
+  CountKeywordArgs: true
+
+# Method parameter must be at least 3 characters long.
+Naming/MethodParameterName:
+  Enabled: false
+
+# seed-fuの構文とあわない
+Layout/ParameterAlignment:
+  Enabled: false
+
+Style/BlockDelimiters:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/SlicingWithRange:
+  Enabled: false
+
+Layout/EmptyLines:
+  Enabled: false
+
+Layout/EmptyLinesAroundAccessModifier:
+  Enabled: false
+
+Layout/EmptyLinesAroundBlockBody:
+  Enabled: false
+
+Layout/EmptyLinesAroundClassBody:
+  Enabled: false
+
+Layout/EmptyLinesAroundModuleBody:
+  Enabled: false
+
+Layout/EmptyLinesAroundMethodBody:
+  Enabled: false
+
+Style/EmptyLiteral:
+  Enabled: false
+
+Style/EndBlock:
+  Enabled: false
+
+Layout/EndOfLine:
+  Enabled: false
+
+RSpec/EmptyExampleGroup:
+  Enabled: false
+
+RSpec/MissingExampleGroupArgument:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+RSpec/LetSetup:
+  Enabled: false
+
+# private/protected は一段深くインデントする
+Layout/IndentationConsistency:
+  EnforcedStyle: indented_internal_methods
+
+Layout/SpaceBeforeBlockBraces:
+  Enabled: false
+
+Layout/TrailingWhitespace:
+  Enabled: false
+
+Layout/MultilineOperationIndentation:
+  Enabled: false
+
+Lint/UnusedBlockArgument:
+  Enabled: false
+
+Lint/AmbiguousBlockAssociation:
+  Enabled: false
+
+Metrics/AbcSize:
+  Max: 110
+
+Metrics/ClassLength:
+  Max: 250
+
+Metrics/MethodLength:
+  Max: 50
+
+Layout/LineLength:
+  Max: 160
+
+Metrics/ModuleLength:
+  Max: 150
+
+Metrics/CyclomaticComplexity:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/AsciiComments:
+  Enabled: false
+
+Metrics/BlockLength:
+  Max: 250
+  Exclude:
+    - "spec/**/*.rb"
+
+Performance/CollectionLiteralInLoop:
+  Enabled: false
+
+Rails/DynamicFindBy:
+  Enabled: false
+
+Rails/FilePath:
+  Enabled: false
+
+Rails/SkipsModelValidations:
+  Enabled: false
+
+Security/MarshalLoad:
+  Enabled: false
+
+Security/YAMLLoad:
+  Enabled: false
+
+Style/GuardClause:
+  Enabled: false
+
+Style/PercentLiteralDelimiters:
+  PreferredDelimiters:
+    "%w": ()
+    "%W": ()
+    "%i": ()
+Style/TrivialAccessors:
+  IgnoreClassMethods: true
+
+Style/RescueStandardError:
+  EnforcedStyle: implicit
+
+Style/StringLiterals:
+  Exclude:
+    - "Rakefile"
+    - "config.ru"
+    - "test/**/*"
+
+RSpec/ContextWording: # 日本語でContextを書いている関係上、接頭辞に特定の文字を置く制約が意味をなさないためfalseにした。
+  Enabled: false
+
+RSpec/ExampleLength:
+  Max: 20 # default 5 は短すぎるので変更
+
+Rails/UnknownEnv: # defalut_valueにstagingがなかったため足した。
+  Environments:
+    - production
+    - development
+    - test
+    - staging

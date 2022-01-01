@@ -1,0 +1,52 @@
+name: Test By RSpec
+on:
+  push:
+    branches:
+      - develop
+  pull_request:
+    branchs:
+      - develop
+
+jobs:
+  rspec:
+    runs-on: ubuntu-latest
+
+    services:
+      db:
+        image: mysql:8.0
+        env:
+          DB_USERNAME: root
+          DB_PASSWORD: develop
+          MYSQL_ROOT_PASSWORD: develop
+        options: >-
+          --health-cmd "mysqladmin ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+      redis:
+        image: redis
+
+    container:
+      image: ghcr.io/nysdin/choco_backend:develop
+      env:
+        RAILS_ENV: test
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+
+      - name: setup gem
+        run: bundle install
+
+      - name: set up database
+        run: |
+          bin/rails db:create
+          bin/rails db:migrate
+
+      - name: bundle exec rspec
+        run: bundle exec rspec
+        env:
+          RAILS_ENV: test
+          DB_HOST: db
+          DB_USERNAME: root
+          DB_PASSWORD: develop

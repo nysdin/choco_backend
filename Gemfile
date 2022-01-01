@@ -16,6 +16,14 @@ gem 'pundit'
 gem 'activerecord-import'
 gem 'rails_same_site_cookie'
 gem 'rack-cors'
+gem 'graphql'
+gem 'sass-rails'
+gem 'googleauth'
+gem 'graphql-batch'
+gem 'carrierwave'
+gem 'carrierwave-base64'
+gem 'fog-aws'
+gem 'fog'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
@@ -41,6 +49,7 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'rails-erd'
+  gem 'graphiql-rails'
 end
 
 group :test do
