@@ -33,6 +33,10 @@
         {
           "name": "RAILS_ENV",
           "value": "production"
+        },
+        {
+          "name": "RAILS_LOG_TO_STDOUT",
+          "value": "true"
         }
       ],
       "resourceRequirements": null,
@@ -117,6 +121,10 @@
         {
           "name": "RAILS_ENV",
           "value": "production"
+        },
+        {
+          "name": "RAILS_LOG_TO_STDOUT",
+          "value": "true"
         }
       ],
       "resourceRequirements": null,
@@ -175,7 +183,7 @@
   "memory": "1024",
   "taskRoleArn": null,
   "compatibilities": ["EC2", "FARGATE"],
-  "taskDefinitionArn": "arn:aws:ecs:ap-northeast-1:292228707312:task-definition/choco-backend-application-def:27",
+  "taskDefinitionArn": "arn:aws:ecs:ap-northeast-1:292228707312:task-definition/choco-backend-application-def:34",
   "family": "choco-backend-application-def",
   "requiresAttributes": [
     {
@@ -244,7 +252,7 @@
   "networkMode": "awsvpc",
   "runtimePlatform": null,
   "cpu": "512",
-  "revision": 27,
+  "revision": 34,
   "status": "ACTIVE",
   "inferenceAccelerators": null,
   "proxyConfiguration": null,
