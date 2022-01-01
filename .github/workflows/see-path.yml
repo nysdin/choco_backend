@@ -1,0 +1,29 @@
+name: See path
+on:
+  push:
+    branches:
+      - develop
+  pull_request:
+    branchs:
+      - develop
+
+jobs:
+  rubocop:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: path
+        run: |
+          pwd
+          ls
+          cd /
+          ls
+      - name: checkout
+        uses: actions/checkout@v2
+
+      - name: check
+        run: |
+          pwd
+          ls
+          cd /
+          ls

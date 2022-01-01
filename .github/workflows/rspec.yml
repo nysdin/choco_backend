@@ -37,18 +37,12 @@ jobs:
 
       - name: see path
         run: |
-          pwd
-          ls
-          cd /
-          ls
 
       - name: setup gem
         run: bundle install
 
       - name: set up database
         run: |
-          pwd
-          ls
           bin/rails db:create
           bin/rails db:migrate
 
