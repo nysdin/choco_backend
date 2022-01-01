@@ -1,0 +1,24 @@
+name: Push To CodeCommit
+
+on:
+  push:
+    branches:
+      - feature/aws_cicd
+
+jobs:
+  push_to_codecommit:
+    name: Push Source Code to CodeCommit
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+
+      - name: Extract branch name
+        shell: bash
+        run: |
+          echo "::set-output name=branch::${GITHUB_REF#refs/heads/}"
+          echo ${GITHUB_REF#refs/heads/}
+
+      - name: Print branch name
+        shell: bash
+        run: echo ${{ steps.extract_branch.outputs.branch }}
