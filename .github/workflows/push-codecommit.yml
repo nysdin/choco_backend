@@ -3,7 +3,7 @@ name: Push To CodeCommit
 on:
   push:
     branches:
-      - feature/aws_cicd
+      - main
 
 jobs:
   push_to_codecommit:
@@ -34,4 +34,4 @@ jobs:
           echo "$CODECOMMIT_SSH_CONFIG" > ~/.ssh/config && chmod 600 ~/.ssh/config
           ssh-keyscan "$CODECOMMIT_HOST" >> ~/.ssh/known_hosts && chmod 600 ~/.ssh/known_hosts
           git remote add codecommit "$CODECOMMIT_REPO_URL"
-          git push codecommit ${{ env.BRANCH_NAME }}
+          git push codecommit main:main
