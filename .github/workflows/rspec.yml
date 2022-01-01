@@ -33,7 +33,9 @@ jobs:
 
     steps:
       - name: docker
-        run: echo $(docker ps)
+        run: |
+          ps
+          echo "$(ps)"
 
       - name: checkout
         uses: actions/checkout@v2
@@ -41,7 +43,7 @@ jobs:
       - name: docker ps
         run: |
           echo "see docker process"
-          echo $(docker ps)
+          echo $(/user/bin/docker ps)
 
       - name: setup gem
         run: bundle install
