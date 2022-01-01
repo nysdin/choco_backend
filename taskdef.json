@@ -46,7 +46,7 @@
       "workingDirectory": null,
       "secrets": [
         {
-          "valueFrom": "arn:aws:secretsmanager:ap-northeast-1:292228707312:secret:choco/app/master_key-69yNL2:master_key::",
+          "valueFrom": "arn:aws:secretsmanager:ap-northeast-1:292228707312:secret:choco/rails-jSJtJb:RAILS_MASTER_KEY::",
           "name": "RAILS_MASTER_KEY"
         },
         {
@@ -64,6 +64,14 @@
         {
           "valueFrom": "arn:aws:secretsmanager:ap-northeast-1:292228707312:secret:choco/mysql-1vw4vY:port::",
           "name": "DB_PORT"
+        },
+        {
+          "valueFrom": "arn:aws:secretsmanager:ap-northeast-1:292228707312:secret:choco/rails-jSJtJb:AWS_ACCESS_KEY_ID::",
+          "name": "AWS_ACCESS_KEY_ID"
+        },
+        {
+          "valueFrom": "arn:aws:secretsmanager:ap-northeast-1:292228707312:secret:choco/rails-jSJtJb:AWS_SECRET_ACCESS_KEY::",
+          "name": "AWS_SECRET_ACCESS_KEY"
         }
       ],
       "dockerSecurityOptions": [],
@@ -134,7 +142,7 @@
       "workingDirectory": null,
       "secrets": [
         {
-          "valueFrom": "arn:aws:secretsmanager:ap-northeast-1:292228707312:secret:choco/app/master_key-69yNL2:master_key::",
+          "valueFrom": "arn:aws:secretsmanager:ap-northeast-1:292228707312:secret:choco/rails-jSJtJb:RAILS_MASTER_KEY::",
           "name": "RAILS_MASTER_KEY"
         },
         {
@@ -152,6 +160,14 @@
         {
           "valueFrom": "arn:aws:secretsmanager:ap-northeast-1:292228707312:secret:choco/mysql-1vw4vY:port::",
           "name": "DB_PORT"
+        },
+        {
+          "valueFrom": "arn:aws:secretsmanager:ap-northeast-1:292228707312:secret:choco/rails-jSJtJb:AWS_ACCESS_KEY_ID::",
+          "name": "AWS_ACCESS_KEY_ID"
+        },
+        {
+          "valueFrom": "arn:aws:secretsmanager:ap-northeast-1:292228707312:secret:choco/rails-jSJtJb:AWS_SECRET_ACCESS_KEY::",
+          "name": "AWS_SECRET_ACCESS_KEY"
         }
       ],
       "dockerSecurityOptions": [],
