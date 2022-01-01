@@ -43,7 +43,7 @@ jobs:
       - name: docker ps
         run: |
           echo "see docker process"
-          echo $(/user/bin/docker ps)
+          echo $(/usr/bin/docker ps)
 
       - name: setup gem
         run: bundle install
