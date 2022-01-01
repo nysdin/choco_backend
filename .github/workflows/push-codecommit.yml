@@ -15,10 +15,22 @@ jobs:
 
       - name: Extract branch name
         shell: bash
-        run: |
-          echo "::set-output name=branch::${GITHUB_REF#refs/heads/}"
-          echo ${GITHUB_REF#refs/heads/}
+        run: echo "::set-output name=branch::${GITHUB_REF#refs/heads/}"
+        id: extract_branch
 
-      - name: Print branch name
+      - name: Push to CodeCommit
         shell: bash
-        run: echo ${GITHUB_REF#refs/heads/}
+        env:
+          CODECOMMIT_HOST: ${{ secrets.CODECOMMIT_HOST }}
+          CODECOMMIT_REPO_URL: ${{ secrets.CODECOMMIT_REPO_URL }}
+          CODECOMMIT_SSH_CONFIG: ${{ secrets.CODECOMMIT_SSH_CONFIG }}
+          CODECOMMIT_SSH_PRIVATE_KEY: ${{ secrets.CODECOMMIT_SSH_PRIVATE_KEY }}
+          BRANCH_NAME: ${{ steps.extract_branch.outputs.branch }}
+        run: |
+          mkdir ~/.ssh
+          echo "$CODECOMMIT_SSH_PRIVATE_KEY" > ~/.ssh/codecommit_rsa && chmod 600 ~/.ssh/codecommit_rsa
+          echo "$CODECOMMIT_SSH_CONFIG" > ~/.ssh/config && chmod 600 ~/.ssh/config
+          ssh-keyscan "$CODECOMMIT_HOST" >> ~/.ssh/known_hosts && chmod 600 ~/.ssh/known_hosts
+          git remote add codecommit "$CODECOMMIT_REPO_URL"
+          echo $(git remote -v)
+          git push codecommit ${{ env.BRANCH_NAME }}
