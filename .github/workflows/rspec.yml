@@ -32,8 +32,16 @@ jobs:
         RAILS_ENV: test
 
     steps:
+      - name: docker
+        run: echo $(docker ps)
+
       - name: checkout
         uses: actions/checkout@v2
+
+      - name: docker ps
+        run: |
+          echo "see docker process"
+          echo $(docker ps)
 
       - name: setup gem
         run: bundle install
