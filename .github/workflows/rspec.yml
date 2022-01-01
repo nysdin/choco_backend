@@ -32,24 +32,23 @@ jobs:
         RAILS_ENV: test
 
     steps:
-      - name: docker
-        run: |
-          ps
-          echo "$(ps)"
-
       - name: checkout
         uses: actions/checkout@v2
 
-      - name: docker ps
+      - name: see path
         run: |
-          echo "see docker process"
-          echo $(/usr/bin/docker ps)
+          pwd
+          ls
+          cd /
+          ls
 
       - name: setup gem
         run: bundle install
 
       - name: set up database
         run: |
+          pwd
+          ls
           bin/rails db:create
           bin/rails db:migrate
 
