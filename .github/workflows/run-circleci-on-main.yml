@@ -1,4 +1,4 @@
-name: Run CircleCI on main blanch
+name: Run CircleCI on main branch
 on:
   push:
     branches:
@@ -13,5 +13,6 @@ jobs:
         env:
           CIRCLECI_BRANCH: main
           CIRCLECI_TOKEN: ${{ secrets.CIRCLECI_TOKEN }}
-        run: |
-          curl -X POST -u "$CIRCLECI_TOKEN:" -H 'Content-Type: application/json' -d "{\"branch\":\"$CIRCLECI_BRANCH\"}" --url "https://circleci.com/api/v2/project/gh/$GITHUB_REPOSITORY/pipeline"
+        run: >
+          curl -X POST -u "$CIRCLECI_TOKEN:" -H 'Content-Type: application/json'
+          -d "{\"branch\":\"$CIRCLECI_BRANCH\"}" --url "https://circleci.com/api/v2/project/gh/$GITHUB_REPOSITORY/pipeline"
