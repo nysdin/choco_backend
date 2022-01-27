@@ -2,15 +2,13 @@ name: Run CircleCI on main branch
 on:
   push:
     branches:
-      - feature/fix-run-circleci-on-main
+      - main
 
 jobs:
   run-circleci:
     runs-on: ubuntu-latest
 
     steps:
-      - name: test
-        run: echo ${{ github.head_ref }}
       - name: Run CircleCI
         env:
           CIRCLECI_BRANCH: main
