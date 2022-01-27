@@ -7,7 +7,7 @@ jobs:
       - checkout
       - run:
           name: echo test
-          command: echo test!!
+          command: echo Only Build Pull Request!!
 
 workflows:
   test_flow:
