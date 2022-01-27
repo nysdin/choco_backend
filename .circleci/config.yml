@@ -1,0 +1,15 @@
+version: 2.1
+jobs:
+  build:
+    docker:
+      - image: cimg/ruby:3.0.3
+    steps:
+      - checkout
+      - run:
+          name: echo test
+          command: echo test!!
+
+workflows:
+  test_flow:
+    jobs:
+      - build
