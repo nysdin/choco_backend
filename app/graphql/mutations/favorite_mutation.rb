@@ -11,10 +11,7 @@ module Mutations
         user_id: user_id
       )
 
-      able_to_favorite_condition = is_favorited && !favorite # => いいねできるときの条件
-      disable_to_favorite_condition = !is_favorited && favorite # => いいねの取り消しができるときの条件
-
-      if able_to_favorite_condition
+      if is_favorited && favorite.nil?
         begin
           Rails.logger.info '--- 新規のいいねを作成 ---'
           favorite = Favorite.create!(
@@ -25,7 +22,7 @@ module Mutations
           Rails.logger.debug { "error type: #{e.class}" }
           Rails.logger.debug { "created error content: #{e}" }
         end
-      elsif disable_to_favorite_condition
+      elsif !is_favorited && favorite
         begin
           Rails.logger.info '--- いいねの取り消しを実行 ---'
           favorite.destroy!

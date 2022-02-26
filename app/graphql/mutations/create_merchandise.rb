@@ -27,6 +27,7 @@ module Mutations
           seller_id: context[:current_user].id
         )
 
+        ## TODO: バックエンド側でも画像を4枚以上アップできないようなバリデーションが必要
         image.each do |i|
           MerchandiseImage.create!(
             url: base64_conversion(i),
@@ -39,8 +40,8 @@ module Mutations
           department_id: department_id
         )
       rescue => e
-        logger.debug "error type: #{e.class}"
-        logger.debug "created error content: #{e}"
+        Rails.logger.debug "error type: #{e.class}"
+        Rails.logger.debug "created error content: #{e}"
       end
 
       Rails.logger.info '--- 最終的な商品のレコード ---'

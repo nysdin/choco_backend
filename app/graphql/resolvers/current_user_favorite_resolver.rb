@@ -8,7 +8,6 @@ module Resolvers
         merchandise_id: merchandise_id,
         user_id: context[:current_user][:id]
       )
-      
     end
   end
 end
