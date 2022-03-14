@@ -4,16 +4,7 @@ module Mutations
     argument :merchandise_id, Integer, required: true
 
     def resolve(merchandise_id:)
-      merchandise = Merchandise.find(merchandise_id)
-      result = nil
-
-      begin
-        result = merchandise.destroy!
-      rescue => e
-        Rails.logger.debug "error type: #{e.class}"
-        Rails.logger.debug "created error content: #{e}"
-      end
-
+      result = Merchandises::DeleteMerchandiseService.new(merchandise_id: merchandise_id).execute
       { result: !!result }
     end
   end

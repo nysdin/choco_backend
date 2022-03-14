@@ -1,9 +1,5 @@
-require 'base64'
-
 module Mutations
   class CreateMerchandise < BaseMutation
-    include CarrierwaveBase64Uploader
-
     field :merchandise, Types::MerchandiseType, null: false
 
     argument :title, String, required: true
@@ -15,37 +11,16 @@ module Mutations
     argument :image, [String], required: false
 
     def resolve(title:, description:, price:, public_status:, condition:, department_id:, image:)
-      merchandise = nil
-
-      begin
-        merchandise = Merchandise.create!(
-          title: title,
-          description: description,
-          price: price,
-          public_status: public_status,
-          condition: condition,
-          seller_id: context[:current_user].id
-        )
-
-        ## TODO: バックエンド側でも画像を4枚以上アップできないようなバリデーションが必要
-        image.each do |i|
-          MerchandiseImage.create!(
-            url: base64_conversion(i),
-            merchandise_id: merchandise.id
-          )
-        end
-
-        DividedDepartment.create!(
-          merchandise_id: merchandise.id,
-          department_id: department_id
-        )
-      rescue => e
-        Rails.logger.debug "error type: #{e.class}"
-        Rails.logger.debug "created error content: #{e}"
-      end
-
-      Rails.logger.info '--- 最終的な商品のレコード ---'
-      Rails.logger.info merchandise
+      merchandise = MerchandiseRepository.create_merchandise(
+        title: title,
+        description: description,
+        price: price,
+        public_status: public_status,
+        condition: condition,
+        department_id: department_id,
+        image: image,
+        current_user: context[:current_user]
+      )
 
       { merchandise: merchandise }
     end
