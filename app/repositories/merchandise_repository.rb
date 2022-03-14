@@ -35,7 +35,7 @@ class MerchandiseRepository
             next if is_s3_uri == 0
 
             MerchandiseImage.create!(
-              url: App::CarrierwaveBase64UploaderService.new.base64_conversion(uri),
+              url: Apps::CarrierwaveBase64UploaderService.new.base64_conversion(uri),
               merchandise_id: merchandise.id
             )
           end
@@ -92,7 +92,7 @@ class MerchandiseRepository
         ## FIXME: imageとdepartmentは別Repositoryに分割したい
         image.each do |i|
           merchandise.merchandise_images.create!(
-            url: App::CarrierwaveBase64UploaderService.new.base64_conversion(i),
+            url: Apps::CarrierwaveBase64UploaderService.new.base64_conversion(i),
             merchandise_id: merchandise.id
           )
         end

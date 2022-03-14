@@ -1,4 +1,4 @@
-module App
+module Apps
   class CarrierwaveBase64UploaderService
     extend ActiveSupport::Concern
 

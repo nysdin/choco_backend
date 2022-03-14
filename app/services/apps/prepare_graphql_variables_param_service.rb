@@ -1,4 +1,4 @@
-module App
+module Apps
   class PrepareGraphqlVariablesParamService
     def initialize(variables_param)
       @variables_param = variables_param

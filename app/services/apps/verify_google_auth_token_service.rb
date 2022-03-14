@@ -1,4 +1,4 @@
-module App
+module Apps
   class VerifyGoogleAuthTokenService
     def initialize(id_token = '')
       @id_token = id_token
