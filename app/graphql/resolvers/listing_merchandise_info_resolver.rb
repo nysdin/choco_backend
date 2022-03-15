@@ -4,7 +4,7 @@ module Resolvers
     argument :merchandise_id, Integer, required: true
 
     def resolve(merchandise_id:)
-      Merchandise.eager_load(divided_department: :department).find_by(id: merchandise_id)
+      Merchandises::FetchSpecificMerchandiseService.new(merchandise_id: merchandise_id).execute
     end
   end
 end
