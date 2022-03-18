@@ -1,4 +1,4 @@
-module Favorites
+module FavoriteServices
   class FindSpecificFavoriteService
     def initialize(user_id:, merchandise_id:)
       @user_id = user_id

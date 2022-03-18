@@ -1,4 +1,4 @@
-module Merchandises
+module MerchandiseServices
   class EditMerchandiseService
     def initialize(merchandise_id:, title:, description:, price:, public_status:, condition:, department_id:, image:)
       @merchandise_id = merchandise_id

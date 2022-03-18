@@ -4,7 +4,7 @@ class GraphqlController < ApplicationController
   before_action :prepare_graphql_auth_instance_variables
 
   def execute
-    variables = Apps::PrepareGraphqlVariablesParamService.new(params[:variables]).execute
+    variables = PrepareGraphqlVariablesParamService.new(params[:variables]).execute
     query = params[:query]
     operation_name = params[:operationName]
     context = {
@@ -30,10 +30,10 @@ class GraphqlController < ApplicationController
 
     def prepare_graphql_auth_instance_variables
       id_token = request.headers[:authorization]
-      @payload = Apps::VerifyGoogleAuthTokenService.new(id_token).execute
+      @payload = VerifyGoogleAuthTokenService.new(id_token).execute
       return if @payload.blank?
 
-      @current_user ||= Users::PrepareLoginUserService.new(email: @payload['email']).execute
+      current_user(email: @payload['email'])
     end
 
     def handle_error_in_development(e)

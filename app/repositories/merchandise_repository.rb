@@ -26,16 +26,27 @@ class MerchandiseRepository
 
         merchandise.divided_department.update!(department_id: department_id) if department_id&.present? && department_id != divided_department.department_id
 
-        if image&.present? && image != merchandise_images
-          image.each do |uri|
+        ## FIXME: ここの画像更新部分がうまく更新できない
+        if false && image&.present? && image != merchandise_images
+          ## delete -> createの方針で実装
+          ## s3のURLからDBに保存されているファイル名に変換する
+          ## 下記の時点で、これからアップロードするデータがフル無視されている
+          dislayed_images = image.map { |url|
+            next unless (url =~ /https:\/\/s3./) == 0
+            next if (url =~ /data:/) == 0
+
+            MerchandiseImageUtils.parse_s3_url_to_filename(url: url)
+          }
+          saved_db_images = merchandise.merchandise_images.pluck(:url).map { |url|
+            MerchandiseImageUtils.parse_s3_url_to_filename(url: url)
+          }
+          should_save_imaegs = dislayed_images - saved_db_images
+          merchandise.merchandise_images.delete_all
+          should_save_imaegs.each do |uri|
             next if MerchandiseImage.find_by(url: uri, merchandise_id: merchandise.id).present?
 
-            ## https://s3. がついているURIはパース済みなので、何もしない
-            is_s3_uri = uri =~ /https:\/\/s3./
-            next if is_s3_uri == 0
-
             MerchandiseImage.create!(
-              url: Apps::CarrierwaveBase64UploaderService.new.base64_conversion(uri),
+              url: CarrierwaveBase64UploaderService.new.base64_conversion(uri),
               merchandise_id: merchandise.id
             )
           end
@@ -92,7 +103,7 @@ class MerchandiseRepository
         ## FIXME: imageとdepartmentは別Repositoryに分割したい
         image.each do |i|
           merchandise.merchandise_images.create!(
-            url: Apps::CarrierwaveBase64UploaderService.new.base64_conversion(i),
+            url: CarrierwaveBase64UploaderService.new.base64_conversion(i),
             merchandise_id: merchandise.id
           )
         end

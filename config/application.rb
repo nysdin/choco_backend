@@ -40,6 +40,7 @@ module Choco
     # Rails autoload constant
     config.autoload_paths << "#{Rails.root}/app/repositories"
     config.autoload_paths << "#{Rails.root}/app/services"
+    config.autoload_paths << "#{Rails.root}/utils/"
 
     # Only loads a smaller set of middleware suitable for API only apps.
     # Middleware like session, flash, cookies can be added back manually.

@@ -4,7 +4,7 @@ module Resolvers
     argument :id, Integer, required: true
 
     def resolve(id:)
-      Merchandises::FetchSpecificMerchandiseService.new(merchandise_id: id).execute
+      MerchandiseServices::FetchSpecificMerchandiseService.new(merchandise_id: id).execute
     end
   end
 end

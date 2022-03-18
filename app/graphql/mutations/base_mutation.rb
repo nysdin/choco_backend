@@ -6,7 +6,7 @@ module Mutations
     object_class Types::BaseObject
 
     def authorized?(_args = '')
-      Users::ConfirmAuthorizedUserService.new(context: context).execute
+      UserServices::ConfirmAuthorizedUserService.new(context: context).execute
     end
   end
 end

@@ -12,16 +12,16 @@ module Mutations
     argument :image, [String], required: false
 
     def resolve(merchandise_id: nil, title: nil, description: nil, price: nil, public_status: nil, condition: nil, department_id: nil, image: nil)
-      merchandise = Merchandises::EditMerchandiseService.new(
-                      merchandise_id: merchandise_id,
-                      title: title,
-                      description: description,
-                      price: price,
-                      public_status: public_status,
-                      condition: condition,
-                      department_id: department_id,
-                      image: image.present? ? image : ''
-                    ).execute
+      merchandise = MerchandiseServices::EditMerchandiseService.new(
+        merchandise_id: merchandise_id,
+        title: title,
+        description: description,
+        price: price,
+        public_status: public_status,
+        condition: condition,
+        department_id: department_id,
+        image: image.presence || ''
+      ).execute
 
       { merchandise: merchandise }
     end

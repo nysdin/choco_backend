@@ -17,6 +17,7 @@ class MerchandiseImageUploader < CarrierWave::Uploader::Base
   end
 
   # ファイル名を指定今回はアップロード日時-ファイル名に設定
+  # 実際にDBに保存されるときのURLの値になる
   def filename
     "#{Time.zone.today}-#{original_filename}" if original_filename
   end

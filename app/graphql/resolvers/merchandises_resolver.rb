@@ -3,7 +3,7 @@ module Resolvers
     type Types::MerchandiseType.connection_type, null: true
 
     def resolve
-      Merchandises::FetchAllMerchandisesService.new.execute
+      MerchandiseServices::FetchAllMerchandisesService.new.execute
     end
   end
 end

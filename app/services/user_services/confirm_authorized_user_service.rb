@@ -1,4 +1,4 @@
-module Users
+module UserServices
   class ConfirmAuthorizedUserService
     def initialize(context:)
       @context = context

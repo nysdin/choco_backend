@@ -4,7 +4,7 @@ module Mutations
     argument :merchandise_id, Integer, required: true
 
     def resolve(merchandise_id:)
-      result = Merchandises::DeleteMerchandiseService.new(merchandise_id: merchandise_id).execute
+      result = MerchandiseServices::DeleteMerchandiseService.new(merchandise_id: merchandise_id).execute
       { result: !!result }
     end
   end

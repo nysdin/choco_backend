@@ -4,7 +4,7 @@ module Resolvers
 
     def resolve
       login_user_email = context[:current_user][:email]
-      Users::PrepareLoginUserService.new(email: login_user_email).execute
+      UserServices::PrepareLoginUserService.new(email: login_user_email).execute
     end
   end
 end

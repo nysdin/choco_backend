@@ -1,4 +1,4 @@
-module Favorites
+module FavoriteServices
   class ChangeFavoriteService
     def initialize(user_id:, merchandise_id:, is_favorited: false)
       @user_id = user_id

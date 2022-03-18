@@ -1,4 +1,4 @@
-module Merchandises
+module MerchandiseServices
   class DeleteMerchandiseService
     def initialize(merchandise_id:)
       @merchandise_id = merchandise_id

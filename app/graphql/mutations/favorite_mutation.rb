@@ -7,7 +7,7 @@ module Mutations
     def resolve(merchandise_id:, is_favorited:)
       user_id = context[:current_user][:id]
 
-      favorite = Favorites::ChangeFavoriteService.new(
+      favorite = FavoriteServices::ChangeFavoriteService.new(
         user_id: user_id,
         merchandise_id: merchandise_id,
         is_favorited: is_favorited

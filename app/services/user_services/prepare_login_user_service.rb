@@ -1,4 +1,4 @@
-module Users
+module UserServices
   class PrepareLoginUserService
     def initialize(email:)
       @email = email
