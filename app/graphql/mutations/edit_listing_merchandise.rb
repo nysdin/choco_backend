@@ -1,7 +1,8 @@
 module Mutations
-  class CreateMerchandise < BaseMutation
+  class EditListingMerchandise < BaseMutation
     field :merchandise, Types::MerchandiseType, null: false
 
+    argument :merchandise_id, Integer, required: true
     argument :title, String, required: true
     argument :description, String, required: true
     argument :price, Integer, required: true
@@ -10,17 +11,17 @@ module Mutations
     argument :department_id, Integer, required: true
     argument :image, [String], required: false
 
-    def resolve(title:, description:, price:, public_status:, condition:, department_id:, image:)
-      merchandise = MerchandiseRepository.create_merchandise(
+    def resolve(merchandise_id: nil, title: nil, description: nil, price: nil, public_status: nil, condition: nil, department_id: nil, image: nil)
+      merchandise = MerchandiseServices::EditMerchandiseService.new(
+        merchandise_id: merchandise_id,
         title: title,
         description: description,
         price: price,
         public_status: public_status,
         condition: condition,
         department_id: department_id,
-        image: image,
-        current_user: context[:current_user]
-      )
+        image: image.presence || ''
+      ).execute
 
       { merchandise: merchandise }
     end

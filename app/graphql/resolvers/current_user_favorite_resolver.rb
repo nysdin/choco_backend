@@ -4,11 +4,7 @@ module Resolvers
     argument :merchandise_id, Integer, required: true
 
     def resolve(merchandise_id:)
-      Favorite.find_by(
-        merchandise_id: merchandise_id,
-        user_id: context[:current_user][:id]
-      )
-      
+      FavoriteServices::FindSpecificFavoriteService.new(user_id: context[:current_user][:id], merchandise_id: merchandise_id).execute
     end
   end
 end
